@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+#Project
+
+myenv
+docker-compose.yaml
+requirements.txt
+config/
+data/
+logs/
+constants.py
