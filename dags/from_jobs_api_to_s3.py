@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.models.variable import Variable
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
-from extraction_jobs_api_to_s3 import get_data
+from extraction_jobs_api_to_s3 import get_data_jobify
 
 import pendulum
 
@@ -34,7 +34,7 @@ with DAG(
     
     get_data_data_science = PythonOperator(
         task_id="get_data_data_science",
-        python_callable=get_data,
+        python_callable=get_data_jobify,
         op_kwargs={"industry":"data-science",
                    "ACCESS_KEY":ACCESS_KEY,
                    "SECRET_KEY":SECRET_KEY}
@@ -42,7 +42,7 @@ with DAG(
     
     get_data_engineering = PythonOperator(
         task_id="get_data_engineering",
-        python_callable=get_data,
+        python_callable=get_data_jobify,
         op_kwargs={"industry":"engineering",
                    "ACCESS_KEY":ACCESS_KEY,
                    "SECRET_KEY":SECRET_KEY}
@@ -50,7 +50,7 @@ with DAG(
     
     get_data_admin = PythonOperator(
         task_id="get_data_admin",
-        python_callable=get_data,
+        python_callable=get_data_jobify,
         op_kwargs={"industry":"admin",
                    "ACCESS_KEY":ACCESS_KEY,
                    "SECRET_KEY":SECRET_KEY}

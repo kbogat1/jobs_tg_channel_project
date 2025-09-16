@@ -1,7 +1,7 @@
 import duckdb
 import pendulum
 
-def get_data(industry='data-science', ACCESS_KEY=None, SECRET_KEY=None):
+def get_data_jobify(industry='data-science', ACCESS_KEY=None, SECRET_KEY=None):
     today = pendulum.today().date().strftime('%Y-%m-%d')
     
     connect = duckdb.connect()
