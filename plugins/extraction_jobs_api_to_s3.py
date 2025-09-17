@@ -24,5 +24,26 @@ def get_data_jobify(industry='data-science', ACCESS_KEY=None, SECRET_KEY=None):
     connect.close()
     
     
+def get_data_head_hunter(ACCESS_KEY=None, SECRET_KEY=None):
+    connect = duckdb.connect()
+    
+    connect.sql(
+        f"""
+            INSTALL httpfs;
+            LOAD httpfs;
+            SET s3_url_style = 'path';
+            SET s3_endpoint = 'minio:9000';
+            SET s3_access_key_id = '{ACCESS_KEY}';
+            SET s3_secret_access_key = '{SECRET_KEY}';
+            SET s3_use_ssl = FALSE;
+            
+            COPY (
+                SELECT * FROM read_json_auto('https://api.hh.ru/professional_roles')
+            ) TO 's3://head-hunter/professional_roles.json';
+"""
+    )
+    connect.close()
+    
+    
 
 
