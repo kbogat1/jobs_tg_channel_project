@@ -24,7 +24,7 @@ def get_data_jobify(industry='data-science', ACCESS_KEY=None, SECRET_KEY=None):
     connect.close()
     
     
-def get_data_head_hunter(ACCESS_KEY=None, SECRET_KEY=None):
+def get_data_hh_prof_roles(ACCESS_KEY=None, SECRET_KEY=None):
     connect = duckdb.connect()
     
     connect.sql(
